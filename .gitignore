@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.openai/
+.npmrc
+.env
+.env.*
+*.log
+qa/
+model-source/
+AGENTS.md
+CONTENT-SOURCES.md
+design-qa.md
+README.md
+*.zip
