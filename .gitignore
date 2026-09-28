@@ -12,3 +12,5 @@ CONTENT-SOURCES.md
 design-qa.md
 README.md
 *.zip
+
+.prerender/
