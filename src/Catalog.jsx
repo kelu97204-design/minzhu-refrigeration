@@ -19,7 +19,7 @@ export function InquirySummary({lang}){
  const selectedModel=model==='other'?(customModel.trim()||'Other models - please advise'):model;
  const summary=`COOLMEIKE inquiry\nModel: ${selectedModel||'Please advise'}\nQuantity: ${quantity||'To be confirmed'}\nPlease provide a quotation and confirm application compatibility.`;
  const whatsapp=`https://wa.me/8619557964334?text=${encodeURIComponent(summary)}`;
- const email=`mailto:1748704761@qq.com?subject=${encodeURIComponent('COOLMEIKE quotation request'+(selectedModel?' - '+selectedModel:''))}&body=${encodeURIComponent(summary)}`;
+ const email=`mailto:kelu97204@gmail.com?subject=${encodeURIComponent('COOLMEIKE quotation request'+(selectedModel?' - '+selectedModel:''))}&body=${encodeURIComponent(summary)}`;
  return <div className="inquiry-summary"><h3>{choose(lang,'Request a quote','获取报价')}</h3>
  <label>{choose(lang,'Model','型号')}<select value={model} onChange={e=>{setModel(e.target.value);setCopied(false)}}><option value="">{choose(lang,'Help me select','请协助选型')}</option>{popularProducts.map(p=><option key={p.model}>{p.model}</option>)}<option value="other">{choose(lang,'Other models','更多型号咨询')}</option></select></label>
  <button className="other-model-link" aria-expanded={model==='other'} aria-controls="other-model-fields" onClick={()=>{setModel('other');setCopied(false)}}>{choose(lang,'Looking for another model? Ask us →','没有找到所需型号？更多型号咨询 →')}</button>
