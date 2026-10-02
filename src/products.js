@@ -4,7 +4,7 @@
 // temperatures, COP, operating envelope and oil type for each individual model.
 // TODO(factory): confirm MOQ, price, warranty and delivery time before publishing.
 // Source: 民主样本PPT.pptx slides 24–27 (printed pages 19–22).
-// TODO(factory): approve series photographs; no exact SKU photograph is supplied.
+// Photo mapping updated by the owner on 2026-10-02; keep uploaded originals intact.
 // Physical tables align by row order with the preceding model tables.
 const common = {
   brand: 'COOLMEIKE',
@@ -56,6 +56,7 @@ export const popularProducts = [
   },
   {
     ...common, model: '4G-20.2', slug: '4g-20-2-compatible-compressor',
+    photo: { src: 'assets/products/4g-20-2.jpg', width: 1702, height: 1276 },
     series: 'Large Four / Six-Cylinder Series',
     nominalPower: { hp: 20, kw: 15.0 }, cylinders: 4, cylinderDiameterMm: 75, displacementM3H: 84.5,
     electrical: { ...powerSupply, maxOperatingCurrentA: 37, maxPowerConsumptionKw: 21.5, startingCurrentA: '97 / 158' },
@@ -72,7 +73,27 @@ export const popularProducts = [
     dimensions: { lengthMm: 765, widthMm: 452, heightMm: 445, footingLengthMm: 381, footingWidthMm: 305 },
     oilVolumeL: 4.75, netWeightKg: 229,
   },
-].map(product => ({ ...product, image: `assets/catalog/page-${product.series.startsWith('Small')?24:26}.jpg`, photoFamily: product.model==='4DC-5.2'?'small':product.model==='4G-20.2'?'large':product.model==='6G-30.2'?'six':'medium', technicalDrawing: `assets/catalog/page-${product.series.startsWith('Small')?25:27}.jpg`, compatibility: { referenceBrand: 'BITZER', referenceModel: product.model, originalProduct: false } }));
+  {
+    ...common, model: '6F-40.2', slug: '6f-40-2-compatible-compressor',
+    photo: { src: 'assets/products/6f-40-2.jpg', width: 1707, height: 1280 },
+    series: 'Large Four / Six-Cylinder Series',
+    nominalPower: { hp: 40, kw: 30.0 }, cylinders: 6, cylinderDiameterMm: 82, displacementM3H: 151.6,
+    electrical: { ...powerSupply, maxOperatingCurrentA: 78, maxPowerConsumptionKw: 38.6, startingCurrentA: '180 / 323' },
+    connections: { dischargeMm: 42, dischargeInch: '1-5/8', suctionMm: 54, suctionInch: '2-1/8' },
+    dimensions: { lengthMm: 795, widthMm: 452, heightMm: 445, footingLengthMm: 381, footingWidthMm: 305 },
+    oilVolumeL: 4.75, netWeightKg: 240,
+  },
+].map(product => ({
+  ...product,
+  image: product.photo?.src || `assets/catalog/page-${product.series.startsWith('Small')?24:26}.jpg`,
+  imageScope: product.photo ? 'product' : 'family',
+  // The former 4G photograph is the owner's selected 6G photograph.
+  // Drawings follow cylinder series, independently from photograph selection.
+  photoFamily: product.model==='4DC-5.2'?'small':product.series.startsWith('Small')?'medium':'large',
+  drawingFamily: product.cylinders===6?'six':product.series.startsWith('Small')?'medium':'large',
+  technicalDrawing: `assets/catalog/page-${product.series.startsWith('Small')?25:27}.jpg`,
+  compatibility: { referenceBrand: 'BITZER', referenceModel: product.model, originalProduct: false },
+}));
 
 export const nominalPowerText = p => `${p.nominalPower.hp} HP / ${p.nominalPower.kw.toFixed(1)} kW`;
 export const productTitle = (p, lang='en') => lang==='zh' ? `${p.model} 兼容型半封闭制冷压缩机` : `${p.model} Compatible Semi-Hermetic Compressor`;
